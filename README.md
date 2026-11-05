@@ -1,3 +1,3 @@
 # FrameFind
 
-A visual discovery app scaffold. Part 1 builds the responsive search interface; image fetching and rendering will be added in Part 2.
+FrameFind is a visual discovery app where people will be able to search a topic and explore a responsive wall of related images. I chose a warm paper background with deep teal and citrus accents to make the interface feel calm, clear, and different from the reference project. The quick-explore chips give visitors topic ideas before they search, while the empty-state panel explains what belongs in the results area. The responsive CSS Grid keeps the future image cards adaptable from small phones to wide screens.
