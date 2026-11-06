@@ -3,7 +3,9 @@ const input = document.getElementById("search-input");
 const results = document.getElementById("results");
 const resultCount = document.getElementById("result-count");
 const emptyState = document.getElementById("empty-state");
+const emptyCopy = emptyState.querySelector(".empty-copy");
 const searchStatus = document.getElementById("search-status");
+const searchButton = document.getElementById("search-button");
 
 async function searchImages(query) {
   const url =
@@ -21,16 +23,47 @@ async function searchImages(query) {
   renderResults(items, query);
 }
 
+function showEmptyState(message) {
+  emptyState.hidden = false;
+  emptyCopy.textContent = message;
+}
+
+function showLoadingState(query) {
+  results.innerHTML = "";
+  resultCount.textContent = "SEARCHING…";
+  emptyState.hidden = true;
+  searchStatus.className = "search-status is-loading";
+  searchStatus.textContent = "Searching for “" + query + "”…";
+  results.innerHTML = Array.from({ length: 6 }, () => {
+    const skeleton = document.createElement("div");
+    skeleton.className = "skeleton-card";
+    skeleton.setAttribute("aria-hidden", "true");
+    return skeleton;
+  }).map((node) => node.outerHTML).join("");
+  searchButton.disabled = true;
+}
+
+function clearLoadingState() {
+  searchStatus.className = "search-status";
+  searchButton.disabled = false;
+}
+
 function renderResults(items, query) {
   results.innerHTML = "";
 
   const imageItems = items.filter((item) => item.imageinfo && item.imageinfo[0]);
   resultCount.textContent =
     "YOUR COLLECTION · " + imageItems.length + " FRAMES";
+
+  if (imageItems.length === 0) {
+    showEmptyState("No images found for “" + query + "”. Try another search.");
+    searchStatus.textContent = "No results for “" + query + "”.";
+    return;
+  }
+
+  emptyState.hidden = true;
   searchStatus.textContent =
     "Showing " + imageItems.length + " results for “" + query + "”.";
-
-  emptyState.hidden = imageItems.length > 0;
 
   imageItems.forEach((item) => {
     const imageInfo = item.imageinfo[0];
@@ -63,8 +96,8 @@ function renderResults(items, query) {
   });
 
   if (results.children.length === 0) {
-    emptyState.hidden = false;
-    searchStatus.textContent = "No images found for “" + query + "”. Try another topic.";
+    showEmptyState("No displayable images were returned. Try another search.");
+    searchStatus.textContent = "No displayable images found.";
   }
 }
 
@@ -73,12 +106,17 @@ form.addEventListener("submit", async (event) => {
   const query = input.value.trim();
   if (!query) return;
 
-  searchStatus.textContent = "Searching Wikimedia Commons…";
+  showLoadingState(query);
   try {
     await searchImages(query);
   } catch (error) {
     console.error(error);
-    searchStatus.textContent = "The search could not be completed. Please try again.";
+    results.innerHTML = "";
+    resultCount.textContent = "SEARCH UNAVAILABLE";
+    showEmptyState("Something went wrong while loading images. Please check your connection and try again.");
+    searchStatus.textContent = "Search failed. Please try again.";
+  } finally {
+    clearLoadingState();
   }
 });
 
