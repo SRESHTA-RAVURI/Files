@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="FrameFind helps you explore visual inspiration by topic." />
+  <title>FrameFind — Find your visual spark</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="page-shell">
+    <header class="site-header">
+      <a class="brand" href="#" aria-label="FrameFind home">
+        <span class="brand-mark" aria-hidden="true">F</span>
+        <span>framefind<span class="brand-period">.</span></span>
+      </a>
+      <span class="header-note"><span class="live-dot" aria-hidden="true"></span> YOUR NEXT IDEA STARTS HERE</span>
+    </header>
+    <main>
+      <section class="hero" aria-labelledby="page-title">
+        <div class="hero-copy">
+          <p class="eyebrow">A LITTLE INSPIRATION, ON DEMAND</p>
+          <h1 id="page-title">Follow a thought.<br /><span>Find its picture.</span></h1>
+          <p class="intro">Search a topic and collect a fresh perspective. From tiny details to big ideas, let curiosity lead the way.</p>
+        </div>
+        <aside class="hero-stamp" aria-label="Explore freely">
+          <span class="stamp-spark" aria-hidden="true">✳</span>
+          <span>LOOK<br />CLOSER</span>
+          <span class="stamp-caption">IDEAS LIVE<br />EVERYWHERE</span>
+        </aside>
+      </section>
+      <section class="search-panel" aria-label="Image search">
+        <form id="search-form" class="search-form">
+          <label class="visually-hidden" for="search-input">What would you like to explore?</label>
+          <span class="search-icon" aria-hidden="true">⌕</span>
+          <input id="search-input" name="topic" type="search" placeholder="Try “quiet mornings” or “architecture”" autocomplete="off" />
+          <button id="search-button" type="submit">Search <span aria-hidden="true">↗</span></button>
+        </form>
+        <p id="search-status" class="search-status" aria-live="polite"></p>
+        <div class="quick-picks" aria-label="Suggested topics">
+          <span class="quick-label">QUICK EXPLORE</span>
+          <button class="chip" type="button">Nature</button>
+          <button class="chip" type="button">Architecture</button>
+          <button class="chip" type="button">Textures</button>
+          <button class="chip" type="button">Street life</button>
+        </div>
+      </section>
+      <section class="gallery-section" aria-labelledby="gallery-title">
+        <div class="gallery-heading">
+          <div><p class="eyebrow">YOUR VISUAL PLAYGROUND</p><h2 id="gallery-title">The discovery wall</h2></div>
+          <p id="result-count" class="result-count">YOUR COLLECTION <span>·</span> 0 FRAMES</p>
+        </div>
+        <section id="results" class="results-grid" aria-label="Image search results"></section>
+        <div id="empty-state" class="empty-state">
+          <span class="empty-icon" aria-hidden="true">✳</span>
+          <p class="empty-title">Your wall is waiting.</p>
+          <p class="empty-copy">Enter a topic above and your visual discoveries will land here.</p>
+          <span class="empty-footnote">MADE FOR THE CURIOUS <span>✦</span></span>
+        </div>
+      </section>
+    </main>
+    <footer class="site-footer"><span>FRAMEFIND © 2026</span><span>COLLECT MOMENTS. CONNECT IDEAS.</span></footer>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
