@@ -17,7 +17,7 @@ Plain HTML, CSS, and JavaScript.
 
 ## Deployment
 
-This repository includes a GitHub Pages Actions workflow in `.github/workflows/pages.yml`. After enabling **Settings → Pages → Build and deployment → Source: GitHub Actions** and merging the deployment workflow to `main`, GitHub Pages publishes the site at:
+This repository includes a GitHub Pages Actions workflow in `.github/workflows/pages.yml`. After enabling **Settings → Pages → Build and deployment → Source: GitHub Actions**, the workflow deploys this branch automatically and publishes the site at:
 
 https://sreshta-ravuri.github.io/Files/
 
